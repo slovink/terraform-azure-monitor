@@ -62,6 +62,7 @@ variable "enabled" {
 }
 
 variable "resource_group_name" {
+  type        = string
   default     = ""
   description = "A container that holds related resources for an Azure solution"
 }
@@ -129,6 +130,7 @@ variable "alias_sub" {
 }
 
 variable "diff_sub_resource_group_name" {
+  type        = string
   default     = ""
   description = "A container that holds related different subscription resources for an Azure solution"
 }
