@@ -139,6 +139,9 @@ You need to run the following command in the testing folder:
 ```
 
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/slovink/terraform-azure-monitor/blob/master/LICENSE) file for details.
+
 
 ## Feedback
 If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/slovink/terraform-azure-monitor/issues), or feel free to drop us an email at [hello@slovink.com](mailto:hello@slovink.com).
