@@ -38,21 +38,23 @@ usage: |-
   Here is an example of how you can use this module in your inventory structure:
 
   ```hcl
-  module "key_vault" {
-    source                      = "git@github.com:slovink/terraform-azure-key-vault.git"
-    name                        = "app"
-    environment                 = "test"
-    label_order                 = ["name", "environment"]
-    resource_group_name         = module.resource_group.resource_group_name
-    location                    = module.resource_group.resource_group_location
-    linked_resource_ids         = [module.log-analytics.workspace_id]
-    subnet_id                   = module.subnet.default_subnet_id[0]
-    private_dns_zones_names = [
-      "privatelink.agentsvc.azure-automation.net",
-      "privatelink.blob.core.windows.net",
-      "privatelink.monitor.azure.com",
-      "privatelink.ods.opinsights.azure.com",
-      "privatelink.oms.opinsights.azure.com",
-    ]
-   }
-    ```
+     module "ampls" {
+    source      = "../../"
+    name        = "app"
+    environment = "test"
+    abel_order = ["name", "environment"]
+
+   resource_group_name = module.resource_group.resource_group_name
+   location            = module.resource_group.resource_group_location
+   linked_resource_ids = [module.log-analytics.workspace_id]
+   subnet_id           = module.subnet.default_subnet_id
+   private_dns_zones_names = [
+    "privatelink.agentsvc.azure-automation.net",
+    "privatelink.blob.core.windows.net",
+    "privatelink.monitor.azure.com",
+    "privatelink.ods.opinsights.azure.com",
+    "privatelink.oms.opinsights.azure.com",
+   ]
+  }
+  ```
+
