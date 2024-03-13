@@ -14,28 +14,14 @@
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v1.1.7-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/Terraform-v1.7.4-green" alt="Terraform">
 </a>
-<a href="LICENSE.md">
+<a href="https://github.com/slovink/terraform-azure-monitor/blob/master/LICENSE">
   <img src="https://img.shields.io/badge/License-APACHE-blue.svg" alt="Licence">
 </a>
 
 
 </p>
-<p align="center">
-
-<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/slovink/terraform-azure-monitor'>
-  <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
-</a>
-<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+AZURE+Monitor&url=https://github.com/slovink/terraform-azure-monitor'>
-  <img title="Share on LinkedIn" src="https://user-images.githubusercontent.com/50652676/62817742-4e339e80-bb59-11e9-87b9-a1f68cae1049.png" />
-</a>
-<a href='https://twitter.com/intent/tweet/?text=Terraform+AZURE+Monitor&url=https://github.com/slovink/terraform-azure-monitor'>
-  <img title="Share on Twitter" src="https://user-images.githubusercontent.com/50652676/62817740-4c69db00-bb59-11e9-8a79-3580fbbf6d5c.png" />
-</a>
-
-</p>
-<hr>
 
 
 We eat, drink, sleep and most importantly love **DevOps**. We are working towards strategies for standardizing architecture while ensuring security for the infrastructure. We are strong believer of the philosophy <b>Bigger problems are always solved by breaking them into smaller manageable problems</b>. Resonating with microservices architecture, it is considered best-practice to run database, cluster, storage in smaller <b>connected yet manageable pieces</b> within the infrastructure.
@@ -73,7 +59,7 @@ Here is an example of how you can use this module in your inventory structure:
 
 ```hcl
 module "key_vault" {
-  source                      = "slovink/monitor/azure"
+  source                      = "https://github.com/slovink/terraform-azure-key-vault.git?ref=1.0.0"
   name                        = "app"
   environment                 = "test"
   label_order                 = ["name", "environment"]
@@ -90,6 +76,32 @@ module "key_vault" {
   ]
  }
   ```
+
+### default
+Here is an example of how you can use this module in your inventory structure:
+
+```hcl
+module "ampls" {
+  source              = "https://github.com/slovink/terraform-azure-monitor.git?ref=1.0.0"
+  name                = "app"
+  environment         = "test"
+  label_order         = ["name", "environment"]
+
+  resource_group_name = module.resource_group.resource_group_name
+  location            = module.resource_group.resource_group_location
+  linked_resource_ids = [module.log-analytics.workspace_id]
+  subnet_id           = module.subnet.default_subnet_id
+  private_dns_zones_names = [
+    "privatelink.agentsvc.azure-automation.net",
+    "privatelink.blob.core.windows.net",
+    "privatelink.monitor.azure.com",
+    "privatelink.ods.opinsights.azure.com",
+    "privatelink.oms.opinsights.azure.com",
+  ]
+}
+```
+
+
 
 
 
@@ -138,6 +150,9 @@ You need to run the following command in the testing folder:
   go test -run Test
 ```
 
+# Examples
+For detailed examples on how to use this module, please refer to the [example](https://github.com/slovink/terraform-azure-monitor/tree/master/_example) directory within this repository.
+
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/slovink/terraform-azure-monitor/blob/master/LICENSE) file for details.
@@ -170,7 +185,7 @@ At [slovink][website], we offer expert guidance, implementation support and serv
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.6.6 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.7.4 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.87.0 |
 
 ## Providers

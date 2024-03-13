@@ -17,11 +17,11 @@ github_repo: git@github.com:slovink/terraform-azure-monitor.git
 # Badges to display
 badges:
   - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
+    image: "https://img.shields.io/badge/Terraform-v1.7.4-green"
     url: "https://www.terraform.io"
   - name: "Licence"
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
-    url: "LICENSE.md"
+    url: "https://github.com/slovink/terraform-azure-monitor/blob/master/LICENSE"
 
 #  description of this project
 description: |-
